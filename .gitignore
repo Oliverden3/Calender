@@ -1,0 +1,77 @@
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]og/
+[Ll]ogs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+*.psess
+*.vsp
+*.vspx
+*.pidb
+*.scc
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+# Uncomment if you don't want to commit the NuGet restore cache
+# *.nuget/
+
+# Backup & Auto-generated files
+*.bak
+*.tmp
+*.temp
+*.log
+
+# Compiled DLLs and executables
+*.dll
+*.exe
+*.pdb
+*.cache
+*.dbmdl
+
+# Publish profiles
+*.pubxml
+*.publishproj
+
+# Azure and build artifacts
+*.azurePubxml
+*.pubxml.user
+csx/
+*.build.csdef
+
+# Rider / JetBrains IDEs
+.idea/
+*.iml
+
+# Coverage and analysis
+*.coverage
+*.coveragexml
+TestResults/
+*.codecoverage
+
+# Generated files
+*.g.*
+*.generated.*
+
+# Local configuration files
+appsettings.*.local.json
+
+# macOS and Windows system files
+.DS_Store
+Thumbs.db
+
+# Others
+_ReSharper*/
+*.resharper
