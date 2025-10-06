@@ -15,4 +15,17 @@
     <Compile Include="config\Caddyfile" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Compile Remove="config/**" />
+		<Content Remove="config/**" />
+		<EmbeddedResource Remove="config/**" />
+		<None Include="config/**" ExcludeFromSingleFile="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
+	  <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
+	</ItemGroup>
+
 </Project>

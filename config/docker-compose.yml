@@ -1,8 +1,11 @@
 ﻿services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..                 # <-- build context is the repo root
+      dockerfile: config/Dockerfile
+      args:
+        PROJECT: Calender.csproj   # <-- change if different
+        DLL_NAME: Calender.dll                           # <-- change if your dll differs
     image: mycalendar:latest
     restart: unless-stopped
     environment:
@@ -17,7 +20,7 @@
       - "80:80"
       - "443:443"
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro  # Caddyfile is in config/
       - caddy_data:/data
       - caddy_config:/config
     networks: [web]
@@ -25,7 +28,7 @@
   duckdns:
     image: ghcr.io/linuxserver/duckdns
     restart: unless-stopped
-    env_file: .env       # ⬅️ we'll create this next
+    env_file: .env
     environment:
       - SUBDOMAINS=${DUCKDNS_SUBDOMAINS}
       - TOKEN=${DUCKDNS_TOKEN}

@@ -1,21 +1,21 @@
-﻿# Dockerfile
+﻿# config/Dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy everything into the build context
+# Copy the entire repo (because build.context = ..)
 COPY . .
 
-# ⬇️ CHANGE this to your repo-relative path
-RUN dotnet restore Calender/Calender.csproj
-RUN dotnet publish Calender/Calender.csproj -c Release -o /app/publish
+# Set once; Compose passes PROJECT=Calender.csproj
+ARG PROJECT="Calender.csproj"
+
+RUN dotnet restore "$PROJECT"
+RUN dotnet publish "$PROJECT" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
-
-# Kestrel will listen here inside the container
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 EXPOSE 8080
 
-# ⬇️ CHANGE the dll name to your project’s output dll
+# ← If your final DLL has a different name, change it here
 ENTRYPOINT ["dotnet", "Calender.dll"]

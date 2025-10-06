@@ -1,0 +1,11 @@
+# Exclude all of config/ from the build context...
+config/**
+
+# ...but keep the Dockerfile that lives there
+!config/Dockerfile
+
+# typical noise to exclude
+.git
+**/bin/
+**/obj/
+.vs/

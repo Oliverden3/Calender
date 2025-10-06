@@ -1,4 +1,3 @@
-﻿#friendlycalender.duckdns.org {
-:80 {
+﻿friendlycalender.duckdns.org {
     reverse_proxy app:8080
 }
