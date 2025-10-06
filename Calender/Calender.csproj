@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="config\Caddyfile" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="config\Caddyfile" />
   </ItemGroup>
 
