@@ -1,4 +1,6 @@
 # Build results
+**/bin/
+**/obj/
 bin/
 obj/
 [Bb]uild/
@@ -76,3 +78,4 @@ Thumbs.db
 _ReSharper*/
 *.resharper
 *.env
+*.
