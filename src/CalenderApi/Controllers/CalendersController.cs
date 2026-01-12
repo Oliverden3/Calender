@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CalenderApi.DB;
 using CalenderApi.DB.Models;
+using CalenderApi.Dtos;
 
 namespace CalenderApi.Controllers
 {
@@ -26,6 +27,20 @@ namespace CalenderApi.Controllers
         public async Task<ActionResult<IEnumerable<Calender>>> GetCalenders()
         {
             return await _context.Calenders.ToListAsync();
+        }
+
+        // GET: api/Calenders
+        [HttpGet("dto")]
+        public async Task<ActionResult<IEnumerable<Calender>>> GetCalendersWithDto()
+        {
+            var calenders = await _context.Calenders.ToListAsync();
+            var DtoList = new Dtos.CalenderReadDto().MapCalenderListToDtoList(calenders);
+
+            if (DtoList == null)
+            {
+                return NotFound();
+            }
+            return Ok(DtoList);
         }
 
         // GET: api/Calenders/5
@@ -76,8 +91,15 @@ namespace CalenderApi.Controllers
         // POST: api/Calenders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Calender>> PostCalender(Calender calender)
+        public async Task<ActionResult<Calender>> PostCalender(CalenderCreateDto createDto)
         {
+            var calender = new Calender
+            {
+                Id = Guid.NewGuid(),
+                Title = createDto.Title,
+                Date = createDto.Date,
+                Description = createDto.Description
+            };
             _context.Calenders.Add(calender);
             await _context.SaveChangesAsync();
 
